@@ -33,13 +33,16 @@ class appContainer {
 
   renderCourses() {
     const ul = document.createElement("UL");
-    const courseDiv = document.getElementById("courseDiv");
+    // const coursesDiv = document.getElementById("coursesDiv");
     appContainer.courses.forEach((course) => {
       const li = document.createElement("LI");
       li.innerText = course.name;
       ul.appendChild(li);
-      courseDiv.appendChild(ul);
     });
-    // document.courseDiv.appendChild(ul);
+    document.getElementById("coursesDiv").appendChild(ul);
   }
 }
+
+// const option = documnt.createElement("option")
+// create options to filter by state?
+// js switch statement
