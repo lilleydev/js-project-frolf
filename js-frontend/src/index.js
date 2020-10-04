@@ -2,6 +2,7 @@ const BACKEND_URL = "http://localhost:3000";
 
 const app = new appContainer();
 app.getCourses();
+app.bindEventListeners();
 // instantiates our app
 
 //
