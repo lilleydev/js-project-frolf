@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Course.all
+    @comments = Comment.all
     render json: @comments
   end
 end
