@@ -1,5 +1,5 @@
 class appContainer {
-  courses = [];
+  static courses = [];
   comments = [];
 
   BACKEND_URL = "http://localhost:3000";
@@ -11,13 +11,20 @@ class appContainer {
 
   getRandomCourse() {
     // debugger;
-    console.log("getting courses");
+    return appContainer.courses[
+      Math.floor(Math.random() * appContainer.courses.length)
+    ];
+    // try .sample()
   }
 
   getCourses() {
     fetch(this.BACKEND_URL + "/courses")
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        data.forEach((course) => {
+          new Course(course.name, course.city, course.state);
+        });
+      })
       // fetch courses
       // render
       .catch((error) => alert(error));
