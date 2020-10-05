@@ -9,20 +9,6 @@ class appContainer {
     btn.addEventListener("click", this.getRandomCourse);
   }
 
-  createCourse() => {
-    return fetch(this.BACKEND_URL + "/courses", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        debugger;
-      }),
-    });
-  };
-
-  
-
   getRandomCourse() {
     // debugger;
     const randCourse =
@@ -47,10 +33,10 @@ class appContainer {
     // try .sample()
   }
 
-  renderRandomCourse() {
-    const recommendDiv = document.getElementById("recommendDiv");
-    // recommendDiv.innerText =
-  }
+  // renderRandomCourse() {
+  //   const recommendDiv = document.getElementById("recommendDiv");
+  //   // recommendDiv.innerText =
+  // }
 
   getCourses() {
     fetch(this.BACKEND_URL + "/courses")
@@ -75,6 +61,24 @@ class appContainer {
       ul.appendChild(li);
     });
     document.getElementById("coursesDiv").appendChild(ul);
+  }
+
+  persist() {
+    fetch("http://localhost:3000/courses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        courses: {
+          name: this.name,
+          city: this.city,
+          state: this.state,
+        },
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => console.log(data));
   }
 }
 
