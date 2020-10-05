@@ -9,6 +9,20 @@ class appContainer {
     btn.addEventListener("click", this.getRandomCourse);
   }
 
+  createCourse() => {
+    return fetch(this.BACKEND_URL + "/courses", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        debugger;
+      }),
+    });
+  };
+
+  
+
   getRandomCourse() {
     // debugger;
     const randCourse =
