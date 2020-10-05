@@ -22,6 +22,7 @@ class appContainer {
     const li = document.createElement("LI");
     ul.innerText = randCourse.name;
     li.innerText = randCourse.city;
+    // add state to display
     document.getElementById("recommendDiv").appendChild(ul);
     ul.appendChild(li);
     // debugger;
