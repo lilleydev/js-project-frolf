@@ -7,6 +7,8 @@ class appContainer {
   bindEventListeners() {
     const btn = document.getElementById("courseRecommend");
     btn.addEventListener("click", this.getRandomCourse);
+    const courseForm = document.getElementById("newCourseForm");
+    courseForm.addEventListener("submit", this.addNewCourse);
   }
 
   getRandomCourse() {
@@ -63,6 +65,29 @@ class appContainer {
     document.getElementById("coursesDiv").appendChild(ul);
   }
 
+  // const courseForm = document.getElementById("newCourseForm");
+  // courseForm.addEventListener("submit", (e) => {
+  //   e.preventDefault();
+  //   const course = new Course({
+  //     attributes: {
+  //       debugger;
+  //     }
+  //   })
+  // })
+
+  addNewCourse() {
+    debugger;
+    const form = document.getElementById("newCourseForm");
+    const course = new Course({
+      attributes: {
+        name: this.courseName.value,
+        city: this.courseCity.value,
+        state: this.courseState.value,
+      },
+    });
+    //call persist()
+    course.persist;
+  }
   persist() {
     fetch("http://localhost:3000/courses", {
       method: "POST",
