@@ -76,26 +76,30 @@ class appContainer {
   // })
 
   addNewCourse() {
-    debugger;
+    // debugger;
     const form = document.getElementById("newCourseForm");
-    const course = new Course({
-      attributes: {
-        name: this.courseName.value,
-        city: this.courseCity.value,
-        state: this.courseState.value,
-      },
-    });
+    const course = new Course(
+      this.courseName.value,
+      this.courseCity.value,
+      this.courseState.value
+    );
+    debugger;
     //call persist()
-    course.persist;
+    this.submitCourse(course);
+  }
+
+  submitCourse(course) {
+    course.persist();
   }
   persist() {
+    debugger;
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        courses: {
+        course: {
           name: this.name,
           city: this.city,
           state: this.state,
