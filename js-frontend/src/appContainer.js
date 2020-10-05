@@ -11,10 +11,30 @@ class appContainer {
 
   getRandomCourse() {
     // debugger;
-    return appContainer.courses[
-      Math.floor(Math.random() * appContainer.courses.length)
-    ];
+    const randCourse =
+      appContainer.courses[
+        Math.floor(Math.random() * appContainer.courses.length)
+      ];
+    console.log(randCourse);
+    // debugger;
+    // const recommendDiv = document.getElementById("recommendDiv");
+    const ul = document.createElement("UL");
+    const li = document.createElement("LI");
+    ul.innerText = randCourse.name;
+    li.innerText = randCourse.city;
+    document.getElementById("recommendDiv").appendChild(ul);
+    ul.appendChild(li);
+    // debugger;
+    // const randLi = rand.innerText;
+    // document.getElementById("recommendDiv").appendChild(randLi);
+
+    // this.renderRandomCourse(rand);
     // try .sample()
+  }
+
+  renderRandomCourse() {
+    const recommendDiv = document.getElementById("recommendDiv");
+    // recommendDiv.innerText =
   }
 
   getCourses() {
