@@ -68,7 +68,7 @@ class appContainer {
   };
 
   createCourse() {
-    debugger;
+    // debugger;
     // const newCourse = { body: course };
     fetch("http://localhost:3000/courses", {
       method: "POST",
@@ -77,9 +77,9 @@ class appContainer {
       },
       body: JSON.stringify({
         course: {
-          name: this.name,
-          city: this.city,
-          state: this.state,
+          name: "Mast",
+          city: "Santee",
+          state: "CA",
         },
       }),
     })
