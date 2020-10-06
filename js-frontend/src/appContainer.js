@@ -54,10 +54,19 @@ class appContainer {
     document.getElementById("coursesDiv").appendChild(ul);
   }
   renderNewCourse(course) {
-    const ul = document.createElement("UL");
-    const li = document.createElement("LI");
-    li.innerText = course.name;
-    ul.appendChild(li);
+    const coursesDiv = document.getElementById("coursesDiv");
+    const h4 = document.createElement("h4");
+    const cityP = document.createElement("P");
+    const stateP = document.createElement("P");
+    const deleteBtn = document.createElement("button");
+
+    h4.innerText = course.name;
+    cityP.innerText = course.city;
+    stateP.innerText = course.state;
+
+    coursesDiv.appendChild(h4);
+    coursesDiv.appendChild(cityP);
+    coursesDiv.appendChild(stateP);
   }
   addNewCourse = (e) => {
     // debugger;
