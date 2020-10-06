@@ -10,6 +10,11 @@ class CoursesController < ApplicationController
     render json: @course if @course.save
   end
 
+  def destroy
+    # @course = Course.find_by(id: params(:course_id])
+    @course.destroy
+  end
+
   private
 
   def course_params
