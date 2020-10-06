@@ -75,7 +75,7 @@ class appContainer {
   //   })
   // })
 
-  addNewCourse(e) {
+  addNewCourse = (e) => {
     // debugger;
     e.preventdefault();
     const form = document.getElementById("newCourseForm");
@@ -87,7 +87,7 @@ class appContainer {
     // debugger;
     //call persist()
     this.createCourse(course);
-  }
+  };
 
   createCourse() {
     debugger;
