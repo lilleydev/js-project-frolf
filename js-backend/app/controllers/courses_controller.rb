@@ -7,4 +7,10 @@ class CoursesController < ApplicationController
   def create
     binding.pry
   end
+
+  private
+
+  def course_params
+    params.require(:course).permit(:name, :city, :state)
+  end
 end
