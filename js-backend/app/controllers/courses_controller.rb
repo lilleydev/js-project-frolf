@@ -6,6 +6,8 @@ class CoursesController < ApplicationController
 
   def create
     binding.pry
+    @course = Course.new(course_params)
+    render json: @course if @course.save
   end
 
   private
