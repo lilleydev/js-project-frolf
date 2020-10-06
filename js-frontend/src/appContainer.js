@@ -96,7 +96,17 @@ class appContainer {
           this.renderNewCourse(data);
         }
       });
-    document.getElementById("newCourseForm").reset();
+    // document.getElementById("newCourseForm").reset();
+  }
+
+  delete(e) {
+    fetch(`http://localhost:3000/courses/${course.id}`, {
+      method: "DELETE",
+    }).then(() => {
+      debugger;
+      this.courses;
+      // delete courses[course.id]
+    });
   }
 }
 
