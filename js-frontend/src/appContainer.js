@@ -63,10 +63,12 @@ class appContainer {
     h4.innerText = course.name;
     cityP.innerText = course.city;
     stateP.innerText = course.state;
+    deleteBtn.innerText = "delete";
 
     coursesDiv.appendChild(h4);
     coursesDiv.appendChild(cityP);
     coursesDiv.appendChild(stateP);
+    coursesDiv.appendChild(deleteBtn);
   }
   addNewCourse = (e) => {
     // debugger;
