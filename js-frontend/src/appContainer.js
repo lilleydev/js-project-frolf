@@ -89,7 +89,14 @@ class appContainer {
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => this.renderNewCourse(data));
+      .then((data) => {
+        if (data.errors) {
+          console.log(info.errors);
+        } else {
+          this.renderNewCourse(data);
+        }
+      });
+    document.getElementById("newCourseForm").reset();
   }
 }
 
