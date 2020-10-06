@@ -53,7 +53,12 @@ class appContainer {
     });
     document.getElementById("coursesDiv").appendChild(ul);
   }
-
+  renderNewCourse(course) {
+    const ul = document.createElement("UL");
+    const li = document.createElement("LI");
+    li.innerText = course.name;
+    ul.appendChild(li);
+  }
   addNewCourse = (e) => {
     // debugger;
     e.preventDefault();
@@ -67,9 +72,9 @@ class appContainer {
     this.createCourse(course);
   };
 
-  createCourse() {
+  createCourse(course) {
     // debugger;
-    // const newCourse = { body: course };
+
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
@@ -77,14 +82,14 @@ class appContainer {
       },
       body: JSON.stringify({
         course: {
-          name: "Mast",
-          city: "Santee",
-          state: "CA",
+          name: course.name,
+          city: course.city,
+          state: course.state,
         },
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => console.log(data));
+      .then((data) => this.renderNewCourse(data));
   }
 }
 
