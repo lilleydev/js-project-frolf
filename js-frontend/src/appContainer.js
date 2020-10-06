@@ -27,18 +27,7 @@ class appContainer {
     // add state to display
     document.getElementById("recommendDiv").appendChild(ul);
     ul.appendChild(li);
-    // debugger;
-    // const randLi = rand.innerText;
-    // document.getElementById("recommendDiv").appendChild(randLi);
-
-    // this.renderRandomCourse(rand);
-    // try .sample()
   }
-
-  // renderRandomCourse() {
-  //   const recommendDiv = document.getElementById("recommendDiv");
-  //   // recommendDiv.innerText =
-  // }
 
   getCourses() {
     fetch(this.BACKEND_URL + "/courses")
@@ -56,7 +45,6 @@ class appContainer {
 
   renderCourses() {
     const ul = document.createElement("UL");
-    // const coursesDiv = document.getElementById("coursesDiv");
     appContainer.courses.forEach((course) => {
       const li = document.createElement("LI");
       li.innerText = course.name;
@@ -64,16 +52,6 @@ class appContainer {
     });
     document.getElementById("coursesDiv").appendChild(ul);
   }
-
-  // const courseForm = document.getElementById("newCourseForm");
-  // courseForm.addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   const course = new Course({
-  //     attributes: {
-  //       debugger;
-  //     }
-  //   })
-  // })
 
   addNewCourse = (e) => {
     // debugger;
@@ -85,7 +63,6 @@ class appContainer {
       this.courseState.value
     );
     // debugger;
-    //call persist()
     this.createCourse(course);
   };
 
