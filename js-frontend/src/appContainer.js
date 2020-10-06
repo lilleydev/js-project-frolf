@@ -5,6 +5,7 @@ class appContainer {
   BACKEND_URL = "http://localhost:3000";
 
   bindEventListeners() {
+    // debugger;
     const btn = document.getElementById("courseRecommend");
     btn.addEventListener("click", this.getRandomCourse);
     const courseForm = document.getElementById("newCourseForm");
@@ -55,12 +56,12 @@ class appContainer {
 
   addNewCourse = (e) => {
     // debugger;
-    e.preventdefault();
+    e.preventDefault();
     const form = document.getElementById("newCourseForm");
     const course = new Course(
-      this.courseName.value,
-      this.courseCity.value,
-      this.courseState.value
+      courseName.value,
+      courseCity.value,
+      courseState.value
     );
     // debugger;
     this.createCourse(course);
