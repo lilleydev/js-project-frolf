@@ -9,9 +9,14 @@ class AppContainer {
     // debugger;
     const btn = document.getElementById("courseRecommend");
     btn.addEventListener("click", this.getRandomCourse);
+
     const courseForm = document.getElementById("newCourseForm");
     courseForm.addEventListener("submit", this.addNewCourse);
+
+    // debugger;
   }
+  // const deleteBtn = document.getElementById("deleteButton");
+  // deleteBtn.addEventListener("click", this.delete);
 
   getRandomCourse() {
     // debugger;
@@ -27,6 +32,7 @@ class AppContainer {
     // add state to display
     document.getElementById("recommendDiv").appendChild(ul);
     ul.appendChild(li);
+    // debugger;
   }
 
   getCourses() {
@@ -35,11 +41,11 @@ class AppContainer {
       .then((data) => {
         data.forEach((course) => {
           const c = new Course(
+            course.id,
             course.name,
             course.city,
-            course.state,
-            course.comment,
-            course.id
+            course.state
+            // course.comment,
           );
           this.courses.push(c);
         });
@@ -101,16 +107,6 @@ class AppContainer {
           document.getElementById("newCourseForm").reset();
         }
       });
-  }
-
-  delete(e) {
-    fetch(`http://localhost:3000/courses/${course.id}`, {
-      method: "DELETE",
-    }).then(() => {
-      // debugger;
-      this.courses;
-      // delete courses[course.id]
-    });
   }
 }
 
