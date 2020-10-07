@@ -7,7 +7,10 @@ class Course {
     // app.courses.push(this);
     // debugger;
   }
-
+  bindEventListeners() {
+    const deleteBtn = document.getElementById("deleteButton");
+    deleteBtn.addEventListener("click", this.delete);
+  }
   // move over
   display() {
     //add new course to page
@@ -16,7 +19,7 @@ class Course {
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
     const deleteBtn = document.createElement("button");
-    deleteBtn.id = "delete";
+    deleteBtn.id = "deleteButton";
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
