@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    # @course = Course.find_by(id: params(:course_id])
+    @course = Course.find_by(id: params[:id])
     @course.destroy
   end
 
