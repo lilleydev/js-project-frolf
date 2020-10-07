@@ -1,16 +1,16 @@
 class Course {
-  constructor(name, city, state, id) {
-    (this.name = name),
-      (this.city = city),
-      (this.state = state),
-      (this.id = id);
+  constructor(id, name, city, state) {
+    this.id = id;
+    (this.name = name), (this.city = city), (this.state = state);
+    // this.comment = comment;
+    // debugger;
     // app.courses.push(this);
     // debugger;
   }
-  bindEventListeners() {
-    const deleteBtn = document.getElementById("deleteButton");
-    deleteBtn.addEventListener("click", this.delete);
-  }
+  // courseEventListeners() {
+  //   const deleteBtn = document.getElementById("deleteButton");
+  //   deleteBtn.addEventListener("click", this.delete);
+  // }
   // move over
   display() {
     //add new course to page
@@ -30,6 +30,8 @@ class Course {
     coursesDiv.appendChild(cityP);
     coursesDiv.appendChild(stateP);
     coursesDiv.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener("click", (e) => this.delete(e));
   }
 
   save() {
@@ -39,11 +41,11 @@ class Course {
 
   delete(e) {
     debugger;
-    fetch(`http://localhost:3000/courses/${course.id}`, {
+    fetch(`http://localhost:3000/courses/${this.id}`, {
       method: "DELETE",
     }).then(() => {
-      // debugger;
-      this.courses;
+      debugger;
+      // this.courses;
       // delete courses[course.id]
     });
   }
