@@ -16,9 +16,7 @@ class AppContainer {
   getRandomCourse() {
     // debugger;
     const randCourse =
-      AppContainer.courses[
-        Math.floor(Math.random() * AppContainer.courses.length)
-      ];
+      app.courses[Math.floor(Math.random() * app.courses.length)];
     console.log(randCourse);
     // debugger;
     // const recommendDiv = document.getElementById("recommendDiv");
