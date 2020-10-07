@@ -36,4 +36,15 @@ class Course {
     app.courses.push(this);
     app.renderCourses();
   }
+
+  delete(e) {
+    debugger;
+    fetch(`http://localhost:3000/courses/${course.id}`, {
+      method: "DELETE",
+    }).then(() => {
+      // debugger;
+      this.courses;
+      // delete courses[course.id]
+    });
+  }
 }
