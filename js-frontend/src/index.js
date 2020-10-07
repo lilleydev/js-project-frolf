@@ -1,6 +1,6 @@
 const BACKEND_URL = "http://localhost:3000";
 
-const app = new appContainer();
+const app = new AppContainer();
 app.getCourses();
 app.bindEventListeners();
 // instantiates our app
