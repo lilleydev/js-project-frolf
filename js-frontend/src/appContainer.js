@@ -1,7 +1,8 @@
-class appContainer {
-  static courses = [];
-  comments = [];
-
+class AppContainer {
+  constructor() {
+    this.courses = [];
+    this.comments = [];
+  }
   BACKEND_URL = "http://localhost:3000";
 
   bindEventListeners() {
@@ -15,8 +16,8 @@ class appContainer {
   getRandomCourse() {
     // debugger;
     const randCourse =
-      appContainer.courses[
-        Math.floor(Math.random() * appContainer.courses.length)
+      AppContainer.courses[
+        Math.floor(Math.random() * AppContainer.courses.length)
       ];
     console.log(randCourse);
     // debugger;
@@ -35,41 +36,47 @@ class appContainer {
       .then((resp) => resp.json())
       .then((data) => {
         data.forEach((course) => {
-          new Course(course.name, course.city, course.state, course.comment);
+          const c = new Course(
+            course.name,
+            course.city,
+            course.state,
+            course.comment,
+            course.id
+          );
+          this.courses.push(c);
         });
         this.renderCourses();
       })
       // fetch courses
       // render
-      .catch((error) => alert(error));
+      .catch((error) => console.error(error));
   }
 
   renderCourses() {
     const ul = document.createElement("UL");
-    appContainer.courses.forEach((course) => {
-      const li = document.createElement("LI");
-      li.innerText = course.name;
-      ul.appendChild(li);
+    this.courses.forEach((course) => {
+      course.display();
+      // add renderNewCourse in here
     });
     document.getElementById("coursesDiv").appendChild(ul);
   }
-  renderNewCourse(course) {
-    const coursesDiv = document.getElementById("coursesDiv");
-    const h4 = document.createElement("h4");
-    const cityP = document.createElement("P");
-    const stateP = document.createElement("P");
-    const deleteBtn = document.createElement("button");
+  // renderNewCourse(course) {
+  //   const coursesDiv = document.getElementById("coursesDiv");
+  //   const h4 = document.createElement("h4");
+  //   const cityP = document.createElement("P");
+  //   const stateP = document.createElement("P");
+  //   const deleteBtn = document.createElement("button");
 
-    h4.innerText = course.name;
-    cityP.innerText = course.city;
-    stateP.innerText = course.state;
-    deleteBtn.innerText = "delete";
+  //   h4.innerText = course.name;
+  //   cityP.innerText = course.city;
+  //   stateP.innerText = course.state;
+  //   deleteBtn.innerText = "delete";
 
-    coursesDiv.appendChild(h4);
-    coursesDiv.appendChild(cityP);
-    coursesDiv.appendChild(stateP);
-    coursesDiv.appendChild(deleteBtn);
-  }
+  //   coursesDiv.appendChild(h4);
+  //   coursesDiv.appendChild(cityP);
+  //   coursesDiv.appendChild(stateP);
+  //   coursesDiv.appendChild(deleteBtn);
+  // }
   addNewCourse = (e) => {
     // debugger;
     e.preventDefault();
@@ -104,17 +111,21 @@ class appContainer {
         if (data.errors) {
           console.log(info.errors);
         } else {
-          this.renderNewCourse(data);
+          course.id = data.id;
+
+          // debugger;
+          course.save();
+          // this.renderNewCourse(data);
+          document.getElementById("newCourseForm").reset();
         }
       });
-    // document.getElementById("newCourseForm").reset();
   }
 
   delete(e) {
     fetch(`http://localhost:3000/courses/${course.id}`, {
       method: "DELETE",
     }).then(() => {
-      debugger;
+      // debugger;
       this.courses;
       // delete courses[course.id]
     });
