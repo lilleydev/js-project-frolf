@@ -16,6 +16,7 @@ class Course {
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
     const deleteBtn = document.createElement("button");
+    deleteBtn.id = "delete";
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
