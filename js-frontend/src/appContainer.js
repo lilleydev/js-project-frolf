@@ -60,23 +60,7 @@ class AppContainer {
     });
     document.getElementById("coursesDiv").appendChild(ul);
   }
-  // renderNewCourse(course) {
-  //   const coursesDiv = document.getElementById("coursesDiv");
-  //   const h4 = document.createElement("h4");
-  //   const cityP = document.createElement("P");
-  //   const stateP = document.createElement("P");
-  //   const deleteBtn = document.createElement("button");
 
-  //   h4.innerText = course.name;
-  //   cityP.innerText = course.city;
-  //   stateP.innerText = course.state;
-  //   deleteBtn.innerText = "delete";
-
-  //   coursesDiv.appendChild(h4);
-  //   coursesDiv.appendChild(cityP);
-  //   coursesDiv.appendChild(stateP);
-  //   coursesDiv.appendChild(deleteBtn);
-  // }
   addNewCourse = (e) => {
     // debugger;
     e.preventDefault();
