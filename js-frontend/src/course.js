@@ -1,32 +1,35 @@
 class Course {
-  constructor(name, city, state) {
+  constructor(name, city, state, id) {
     (this.name = name),
       (this.city = city),
       (this.state = state),
-      appContainer.courses.push(this);
+      (this.id = id);
+    // app.courses.push(this);
     // debugger;
   }
 
-  // bindEventListeners() {
-  //   const courseForm = document.getElementById("newCourseForm");
-  //   courseForm.addEventListener("submit", this.addNewCourse);
-  // }
+  // move over
+  display() {
+    //add new course to page
+    const coursesDiv = document.getElementById("coursesDiv");
+    const h4 = document.createElement("h4");
+    const cityP = document.createElement("P");
+    const stateP = document.createElement("P");
+    const deleteBtn = document.createElement("button");
 
-  // addNewCourse(){
+    h4.innerText = this.name;
+    cityP.innerText = this.city;
+    stateP.innerText = this.state;
+    deleteBtn.innerText = "delete";
 
-  // }
-  // display() {
-  //   appContainer.courses.push(course);
-  //   appContainer.renderCourses();
-  // }
-  // renderCourses() {
-  //   const ul = document.createElement("UL");
-  //   // const coursesDiv = document.getElementById("coursesDiv");
-  //   appContainer.courses.forEach((course) => {
-  //     const li = document.createElement("LI");
-  //     li.innerText = course.name;
-  //     ul.appendChild(li);
-  //   });
-  //   document.getElementById("coursesDiv").appendChild(ul);
-  // }
+    coursesDiv.appendChild(h4);
+    coursesDiv.appendChild(cityP);
+    coursesDiv.appendChild(stateP);
+    coursesDiv.appendChild(deleteBtn);
+  }
+
+  save() {
+    app.courses.push(this);
+    app.renderCourses();
+  }
 }
