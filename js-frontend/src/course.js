@@ -36,7 +36,8 @@ class Course {
 
   save() {
     app.courses.push(this);
-    app.renderCourses();
+    // app.renderCourses();
+    this.display();
   }
 
   delete(e) {
