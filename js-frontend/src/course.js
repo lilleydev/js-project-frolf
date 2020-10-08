@@ -40,11 +40,14 @@ class Course {
   }
 
   delete(e) {
-    debugger;
+    // debugger;
     fetch(`http://localhost:3000/courses/${this.id}`, {
       method: "DELETE",
     }).then(() => {
-      debugger;
+      // debugger;
+      delete app.courses[this.id];
+      // app.renderCourses();
+      this.display();
       // this.courses;
       // delete courses[course.id]
     });
