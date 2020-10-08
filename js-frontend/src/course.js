@@ -1,9 +1,10 @@
 class Course {
-  constructor(name, city, state, id) {
+  constructor(name, city, state, id, comments) {
     (this.name = name),
       (this.city = city),
       (this.state = state),
       (this.id = id);
+      this.comments = comments,
     // this.comment = comment;
     // debugger;
     // app.courses.push(this);
@@ -41,10 +42,28 @@ class Course {
     commentButton.addEventListener("click", (e) => this.getComment(e));
   }
 
+  getComment() {
+    // debugger;
+    fetch("http://localhost:3000/comments")
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        data.forEach((comm) => {
+          debugger;
+          const c = new Comment(this.content, this.course_id);
+          this.courses.push(c);
+        });
+        debugger;
+      })
+      // fetch courses
+      // render
+      .catch((error) => console.error(error));
+  }
+
   save() {
     app.courses.push(this);
     // app.renderCourses();
-    debugger;
+    // debugger;
     this.display();
   }
 
