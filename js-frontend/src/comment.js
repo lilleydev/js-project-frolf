@@ -4,20 +4,15 @@ class Comment {
   }
 
   getComment() {
+    debugger;
     fetch("http://localhost:3000/comments")
       .then((resp) => resp.json())
       .then((data) => {
-        data.forEach((course) => {
-          const c = new Course(
-            course.name,
-            course.city,
-            course.state,
-            course.id
-            // course.comment,
-          );
+        data.forEach((comment) => {
+          const c = new Comment(this.content, this.course_id);
           this.courses.push(c);
         });
-        this.renderCourses();
+        debugger;
       })
       // fetch courses
       // render

@@ -22,18 +22,23 @@ class Course {
     const stateP = document.createElement("P");
     const deleteBtn = document.createElement("button");
     deleteBtn.id = "deleteButton";
+    const commentButton = document.createElement("button");
+    commentButton.id = "commentButton";
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
     stateP.innerText = this.state;
     deleteBtn.innerText = "delete";
+    commentButton.innerText = "See Comments";
 
     coursesDiv.appendChild(h4);
     coursesDiv.appendChild(cityP);
     coursesDiv.appendChild(stateP);
     coursesDiv.appendChild(deleteBtn);
+    coursesDiv.appendChild(commentButton);
 
     deleteBtn.addEventListener("click", (e) => this.delete(e));
+    commentButton.addEventListener("click", (e) => this.getComment(e));
   }
 
   save() {
