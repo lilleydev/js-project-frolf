@@ -41,10 +41,10 @@ class AppContainer {
       .then((data) => {
         data.forEach((course) => {
           const c = new Course(
-            course.id,
             course.name,
             course.city,
-            course.state
+            course.state,
+            course.id
             // course.comment,
           );
           this.courses.push(c);
@@ -74,7 +74,7 @@ class AppContainer {
       courseCity.value,
       courseState.value
     );
-    // debugger;
+    debugger;
     this.createCourse(course);
   };
 
@@ -101,7 +101,7 @@ class AppContainer {
         } else {
           course.id = data.id;
 
-          // debugger;
+          debugger;
           course.save();
           // this.renderNewCourse(data);
           document.getElementById("newCourseForm").reset();

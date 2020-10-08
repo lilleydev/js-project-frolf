@@ -1,7 +1,9 @@
 class Course {
-  constructor(id, name, city, state) {
-    this.id = id;
-    (this.name = name), (this.city = city), (this.state = state);
+  constructor(name, city, state, id) {
+    (this.name = name),
+      (this.city = city),
+      (this.state = state),
+      (this.id = id);
     // this.comment = comment;
     // debugger;
     // app.courses.push(this);
@@ -37,6 +39,7 @@ class Course {
   save() {
     app.courses.push(this);
     // app.renderCourses();
+    debugger;
     this.display();
   }
 
