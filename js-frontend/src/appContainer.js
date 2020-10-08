@@ -57,12 +57,12 @@ class AppContainer {
   }
 
   renderCourses() {
-    const ul = document.createElement("UL");
+    // const ul = document.createElement("UL");
     this.courses.forEach((course) => {
       course.display();
       // add renderNewCourse in here
     });
-    document.getElementById("coursesDiv").appendChild(ul);
+    // document.getElementById("coursesDiv").appendChild(ul);
   }
 
   addNewCourse = (e) => {
