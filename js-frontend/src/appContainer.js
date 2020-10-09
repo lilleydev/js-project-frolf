@@ -59,13 +59,13 @@ class AppContainer {
     // debugger;
     e.preventDefault();
     const form = document.getElementById("newCourseForm");
-    const course = new Course(
-      courseName.value,
-      courseCity.value,
-      courseState.value,
-      courseComment.value
-    );
-    // debugger;
+    const course = new Course({
+      name: courseName.value,
+      city: courseCity.value,
+      state: courseState.value,
+      comments: courseComment.value,
+    });
+    debugger;
     this.createCourse(course);
   };
 
