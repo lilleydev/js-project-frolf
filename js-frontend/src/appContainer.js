@@ -58,7 +58,7 @@ class AppContainer {
   }
 
   renderCourses() {
-    debugger;
+    // debugger;
     this.courses.forEach((course) => {
       course.display();
     });

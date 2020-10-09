@@ -48,7 +48,7 @@ class Course {
   }
 
   getComment() {
-    // debugger;
+    debugger;
     fetch(`http://localhost:3000/courses/${this.id}/comments`)
       .then((resp) => resp.json())
       .then((data) => {
@@ -57,7 +57,7 @@ class Course {
           debugger;
           // fetch using nested route
           const c = new Comment(this.content, this.course_id);
-          this.comments.push(c);
+          app.comments.push(c);
         });
         debugger;
       })
