@@ -8,7 +8,7 @@ class AppContainer {
   bindEventListeners() {
     // debugger;
     const btn = document.getElementById("courseRecommend");
-    btn.addEventListener("click", this.getRandomCourse);
+    btn.addEventListener("click", this.toggleRecommend);
 
     const courseForm = document.getElementById("newCourseForm");
     courseForm.addEventListener("submit", this.addNewCourse);
@@ -17,23 +17,19 @@ class AppContainer {
   }
   // const deleteBtn = document.getElementById("deleteButton");
   // deleteBtn.addEventListener("click", this.delete);
-
-  getRandomCourse() {
-    // debugger;
+  toggleRecommend() {
+    const x = document.getElementById("recommendDiv");
     const randCourse =
       app.courses[Math.floor(Math.random() * app.courses.length)];
-    console.log(randCourse);
-    // debugger;
-    // const recommendDiv = document.getElementById("recommendDiv");
-    const ul = document.createElement("UL");
-    const li = document.createElement("LI");
-    ul.innerText = randCourse.name;
-    li.innerText = randCourse.city;
+    const name = randCourse.name;
+    const city = randCourse.city;
     // add state to display
-    document.getElementById("recommendDiv").appendChild(ul);
-    ul.appendChild(li);
-    debugger;
-    // document.getElementByTagName("UL").remove();
+    x.innerHTML = `Try out ${name} at ${city}!`;
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
 
   getCourses() {
