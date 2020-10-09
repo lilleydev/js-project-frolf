@@ -1,12 +1,13 @@
 class Course {
-  constructor(name, city, state, id, comments) {
+  constructor({ name, city, state, id, comments }) {
     (this.name = name),
       (this.city = city),
       (this.state = state),
-      (this.id = id),
-      (this.comments = comments.map(
-        (comment) => new Comment(comment.content, comment.course_id)
-      ));
+      (this.comments = comments);
+    this.id = id;
+    // (this.comments = comments.map(
+    //   (comment) => new Comment(comment.content, comment.course_id)
+    // ));
     // this.comments = (comments.map((comment) => new Comment(comment.content)))};
   }
   //have a comment object *******
