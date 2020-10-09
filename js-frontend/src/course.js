@@ -22,8 +22,8 @@ class Course {
     const deleteBtn = document.createElement("button");
     const commentButton = document.createElement("button");
     const commentUl = document.createElement("UL");
-
-    commentUl.id = "commentUl";
+    // debugger;
+    commentUl.id = `${this.id}commentUl`;
     deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
 
@@ -69,8 +69,10 @@ class Course {
   renderComment() {
     // debugger;
     this.comments.forEach((comment) => {
+      // parentElement = node.parentElement;
+      // debugger;
+      const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
-      const commentUl = document.getElementById("commentUl");
       commentLi.innerText = comment.content;
       commentUl.appendChild(commentLi);
     });

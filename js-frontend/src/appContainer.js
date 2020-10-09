@@ -32,7 +32,8 @@ class AppContainer {
     // add state to display
     document.getElementById("recommendDiv").appendChild(ul);
     ul.appendChild(li);
-    // debugger;
+    debugger;
+    // document.getElementByTagName("UL").remove();
   }
 
   getCourses() {
@@ -78,7 +79,7 @@ class AppContainer {
   };
 
   createCourse(course) {
-    // debugger;
+    // move to course class;
 
     fetch("http://localhost:3000/courses", {
       method: "POST",
