@@ -44,9 +44,10 @@ class AppContainer {
             course.name,
             course.city,
             course.state,
-            course.id
-            // course.comment,
+            course.id,
+            course.comments
           );
+          // debugger;
           this.courses.push(c);
         });
         this.renderCourses();
@@ -57,12 +58,10 @@ class AppContainer {
   }
 
   renderCourses() {
-    // const ul = document.createElement("UL");
+    debugger;
     this.courses.forEach((course) => {
       course.display();
-      // add renderNewCourse in here
     });
-    // document.getElementById("coursesDiv").appendChild(ul);
   }
 
   addNewCourse = (e) => {
@@ -74,7 +73,7 @@ class AppContainer {
       courseCity.value,
       courseState.value
     );
-    debugger;
+    // debugger;
     this.createCourse(course);
   };
 
