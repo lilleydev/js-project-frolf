@@ -1,5 +1,5 @@
 class Comment {
-  constructor(content) {
-    this.content = content;
+  constructor(content, course_id) {
+    (this.content = content), (this.course_id = course_id);
   }
 }
