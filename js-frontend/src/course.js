@@ -27,8 +27,10 @@ class Course {
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
     const deleteBtn = document.createElement("button");
-    deleteBtn.id = "deleteButton";
     const commentButton = document.createElement("button");
+    const commentUl = document.createElement("ul");
+
+    deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
 
     h4.innerText = this.name;
@@ -42,6 +44,7 @@ class Course {
     coursesDiv.appendChild(stateP);
     coursesDiv.appendChild(deleteBtn);
     coursesDiv.appendChild(commentButton);
+    coursesDiv.appendChild(commentUl);
 
     deleteBtn.addEventListener("click", (e) => this.delete(e));
     commentButton.addEventListener("click", (e) => this.getComment(e));
@@ -59,11 +62,15 @@ class Course {
           const c = new Comment(this.content, this.course_id);
           app.comments.push(c);
         });
-        debugger;
+        this.renderComment();
       })
       // fetch courses
       // render
       .catch((error) => console.error(error));
+  }
+
+  renderComment() {
+    debugger;
   }
 
   save() {
