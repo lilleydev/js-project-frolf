@@ -63,7 +63,7 @@ class AppContainer {
       name: courseName.value,
       city: courseCity.value,
       state: courseState.value,
-      comments: courseComment.value,
+      // comments: courseComment.value,
     });
     debugger;
     this.createCourse(course);
