@@ -23,9 +23,9 @@ class AppContainer {
       app.courses[Math.floor(Math.random() * app.courses.length)];
     const name = randCourse.name;
     const city = randCourse.city;
-    // add state to display
-    x.innerHTML = `Try out ${name} at ${city}!`;
     if (x.style.display === "none") {
+      // add state to display
+      x.innerHTML = `Try out ${name} at ${city}!`;
       x.style.display = "block";
     } else {
       x.style.display = "none";
@@ -37,13 +37,7 @@ class AppContainer {
       .then((resp) => resp.json())
       .then((data) => {
         data.forEach((course) => {
-          const c = new Course(
-            course.name,
-            course.city,
-            course.state,
-            course.id,
-            course.comments
-          );
+          const c = new Course(course);
           // debugger;
           this.courses.push(c);
         });
@@ -68,7 +62,8 @@ class AppContainer {
     const course = new Course(
       courseName.value,
       courseCity.value,
-      courseState.value
+      courseState.value,
+      courseComment.value
     );
     // debugger;
     this.createCourse(course);
@@ -76,7 +71,7 @@ class AppContainer {
 
   createCourse(course) {
     // move to course class;
-
+    debugger;
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
