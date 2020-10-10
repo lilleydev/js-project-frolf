@@ -24,11 +24,13 @@ class Course {
     const stateP = document.createElement("P");
     const deleteBtn = document.createElement("button");
     const commentButton = document.createElement("button");
+    const createCommentButton = document.createElement("button");
     const commentUl = document.createElement("UL");
     // debugger;
     commentUl.id = `${this.id}commentUl`;
     deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
+    createCommentButton.id = "createButton";
     courseDiv.id = `${this.id}courseDiv`;
     commentDiv.id = `${this.id}commentDiv`;
 
@@ -67,14 +69,21 @@ class Course {
           // debugger;
           // fetch using nested route
           const c = new Comment(comm.content, comm.course_id);
-          // debugger;
+          // if c.content == undefined
+
+          // else
           app.comments.push(c);
           // debugger;
         });
         // debugger;
-
+        // if this.comments = [] ***
+        const length = this.comments.length;
+        if (length < 1) {
+          alert("There are no comments for this course");
+        } else {
+          this.renderComment();
+        }
         // this.comments.length > 0
-        this.renderComment();
       })
       // fetch courses
       // render
