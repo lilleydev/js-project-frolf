@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments, only: %i[index show]
+  resources :comments, only: %i[index show create]
   resources :courses, only: %i[index create destroy] do
     resources :comments
   end

@@ -4,4 +4,8 @@ class CommentsController < ApplicationController
     @comments = Comment.all
     render json: @comments
   end
+
+  def create
+    binding.pry
+  end
 end
