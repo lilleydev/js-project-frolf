@@ -65,13 +65,13 @@ class AppContainer {
       state: courseState.value,
       // comments: courseComment.value,
     });
-    debugger;
+    // debugger;
     this.createCourse(course);
   };
 
   createCourse(course) {
     // move to course class;
-    debugger;
+    // debugger;
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
@@ -92,7 +92,7 @@ class AppContainer {
         } else {
           course.id = data.id;
 
-          debugger;
+          // debugger;
           course.save();
           // this.renderNewCourse(data);
           document.getElementById("newCourseForm").reset();
