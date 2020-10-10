@@ -30,7 +30,7 @@ class Course {
     commentUl.id = `${this.id}commentUl`;
     deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
-    createCommentButton.id = "createButton";
+    createCommentButton.id = `${this.id}createCommentButton`;
     courseDiv.id = `${this.id}courseDiv`;
     commentDiv.id = `${this.id}commentDiv`;
 
@@ -39,6 +39,7 @@ class Course {
     stateP.innerText = this.state;
     deleteBtn.innerText = "delete";
     commentButton.innerText = "See Comments";
+    createCommentButton.innerText = "Add Comment";
 
     coursesDiv.appendChild(courseDiv);
     coursesDiv.appendChild(commentDiv);
@@ -49,6 +50,7 @@ class Course {
     courseDiv.appendChild(commentUl);
     courseDiv.appendChild(deleteBtn);
     courseDiv.appendChild(commentButton);
+    commentDiv.appendChild(createCommentButton);
 
     // deleteBtn.addEventListener("click", (e) => this.delete(e));
     commentButton.addEventListener("click", (e) => this.getComment(e));
