@@ -18,6 +18,7 @@ class Course {
     //add new course to page
     const coursesDiv = document.getElementById("coursesDiv");
     const courseDiv = document.createElement("DIV");
+    const commentDiv = document.createElement("DIV");
     const h4 = document.createElement("h4");
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
@@ -29,6 +30,7 @@ class Course {
     deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
     courseDiv.id = `${this.id}courseDiv`;
+    commentDiv.id = `${this.id}commentDiv`;
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
@@ -37,6 +39,7 @@ class Course {
     commentButton.innerText = "See Comments";
 
     coursesDiv.appendChild(courseDiv);
+    coursesDiv.appendChild(commentDiv);
 
     courseDiv.appendChild(h4);
     courseDiv.appendChild(cityP);
@@ -69,6 +72,8 @@ class Course {
           // debugger;
         });
         // debugger;
+
+        // this.comments.length > 0
         this.renderComment();
       })
       // fetch courses
@@ -80,13 +85,21 @@ class Course {
     // debugger;
     this.comments.forEach((comment) => {
       // parentElement = node.parentElement;
-      // debugger;
+
       const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
       commentLi.innerText = comment.content;
       commentUl.appendChild(commentLi);
     });
     // debugger;
+
+    // if (x.style.display === "none") {
+    //   // add state to display
+    //   x.innerHTML = `Try out ${name} at ${city}!`;
+    //   x.style.display = "block";
+    // } else {
+    //   x.style.display = "none";
+    // }
   }
 
   save() {
