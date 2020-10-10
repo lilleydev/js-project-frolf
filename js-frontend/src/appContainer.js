@@ -42,6 +42,7 @@ class AppContainer {
           this.courses.push(c);
         });
         this.renderCourses();
+        // console.log(createCommentButton);
       })
       // fetch courses
       // render
@@ -54,6 +55,23 @@ class AppContainer {
       course.display();
     });
   }
+
+  // addComment(e) {
+  //   e.preventDefault();
+
+  //   debugger;
+  //   //e.target.value
+  //   const comment = document.getElementById("commentInput");
+  //   // debugger;
+  //   // const com = new Course({
+  //   //   name: courseName.value,
+  //   //   city: courseCity.value,
+  //   //   state: courseState.value,
+  //   //   // comments: courseComment.value,
+  //   // });
+  //   // // debugger;
+  //   // this.createCourse(course);
+  // }
 
   addNewCourse = (e) => {
     // debugger;

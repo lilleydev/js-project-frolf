@@ -18,7 +18,10 @@ class Course {
     //add new course to page
     const coursesDiv = document.getElementById("coursesDiv");
     const courseDiv = document.createElement("DIV");
-    const commentDiv = document.createElement("DIV");
+
+    const commentForm = document.createElement("FORM");
+    // const commentDiv = document.createElement("DIV");
+
     const h4 = document.createElement("h4");
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
@@ -26,25 +29,26 @@ class Course {
 
     const commentButton = document.createElement("button");
     const createCommentButton = document.createElement("button");
-    const createComment = document.createElement("INPUT");
+    const commentInput = document.createElement("INPUT");
     const commentUl = document.createElement("UL");
     // debugger;
     commentUl.id = `${this.id}commentUl`;
     deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
-    createCommentButton.id = `${this.id}createCommentButton`;
+    createCommentButton.id = "createCommentButton";
     courseDiv.id = `${this.id}courseDiv`;
-    commentDiv.id = `${this.id}commentDiv`;
+    commentForm.id = "commentForm";
+    commentInput.id = "commentInput";
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
     stateP.innerText = this.state;
+    commentInput.innertText = this.content;
     deleteBtn.innerText = "delete";
     commentButton.innerText = "See Comments";
     createCommentButton.innerText = "Add Comment";
 
     coursesDiv.appendChild(courseDiv);
-    coursesDiv.appendChild(commentDiv);
 
     courseDiv.appendChild(h4);
     courseDiv.appendChild(cityP);
@@ -52,13 +56,22 @@ class Course {
     courseDiv.appendChild(commentUl);
     courseDiv.appendChild(deleteBtn);
     courseDiv.appendChild(commentButton);
+    courseDiv.appendChild(commentForm);
 
-    commentDiv.appendChild(createComment);
-    commentDiv.appendChild(createCommentButton);
+    commentForm.appendChild(commentInput);
+    commentForm.appendChild(createCommentButton);
 
     // deleteBtn.addEventListener("click", (e) => this.delete(e));
     commentButton.addEventListener("click", (e) => this.getComment(e));
-    createCommentButton.addEventListener("click", (e) => this.createComment(e));
+
+    // const createCommentButton = document.getElementById("newComment");
+    // createCommentButton.addEventListener("click", (e) => this.addComment(e));
+
+    // console.log(createCommentButton);
+    commentForm.addEventListener("submit", (e) => {
+      this.addComment(e);
+    });
+
     deleteBtn.addEventListener("click", (e) => {
       fetch(`http://localhost:3000/courses/${this.id}`, {
         method: "Delete",
@@ -97,8 +110,20 @@ class Course {
       .catch((error) => console.error(error));
   }
 
-  createComment(e) {
+  addComment(e) {
+    e.preventDefault();
     debugger;
+    //e.target.value
+    const comment = document.getElementById("commentInput");
+    // debugger;
+    // const com = new Course({
+    //   name: courseName.value,
+    //   city: courseCity.value,
+    //   state: courseState.value,
+    //   // comments: courseComment.value,
+    // });
+    // // debugger;
+    // this.createCourse(course);
   }
 
   renderComment() {
