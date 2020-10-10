@@ -58,6 +58,7 @@ class Course {
 
     // deleteBtn.addEventListener("click", (e) => this.delete(e));
     commentButton.addEventListener("click", (e) => this.getComment(e));
+    createCommentButton.addEventListener("click", (e) => this.createComment(e));
     deleteBtn.addEventListener("click", (e) => {
       fetch(`http://localhost:3000/courses/${this.id}`, {
         method: "Delete",
@@ -94,6 +95,10 @@ class Course {
       // fetch courses
       // render
       .catch((error) => console.error(error));
+  }
+
+  createComment(e) {
+    debugger;
   }
 
   renderComment() {
