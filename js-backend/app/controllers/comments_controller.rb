@@ -8,4 +8,10 @@ class CommentsController < ApplicationController
   def create
     binding.pry
   end
+
+  private
+
+  def course_params
+    params.require(:comment).permit(:content, :course_id)
+  end
 end
