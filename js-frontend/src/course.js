@@ -23,8 +23,10 @@ class Course {
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
     const deleteBtn = document.createElement("button");
+
     const commentButton = document.createElement("button");
     const createCommentButton = document.createElement("button");
+    const createComment = document.createElement("INPUT");
     const commentUl = document.createElement("UL");
     // debugger;
     commentUl.id = `${this.id}commentUl`;
@@ -50,6 +52,8 @@ class Course {
     courseDiv.appendChild(commentUl);
     courseDiv.appendChild(deleteBtn);
     courseDiv.appendChild(commentButton);
+
+    commentDiv.appendChild(createComment);
     commentDiv.appendChild(createCommentButton);
 
     // deleteBtn.addEventListener("click", (e) => this.delete(e));
