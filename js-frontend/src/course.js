@@ -17,6 +17,7 @@ class Course {
   display() {
     //add new course to page
     const coursesDiv = document.getElementById("coursesDiv");
+    const courseDiv = document.createElement("DIV");
     const h4 = document.createElement("h4");
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
@@ -27,6 +28,7 @@ class Course {
     commentUl.id = `${this.id}commentUl`;
     deleteBtn.id = "deleteButton";
     commentButton.id = "commentButton";
+    courseDiv.id = `${this.id}courseDiv`;
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
@@ -34,15 +36,22 @@ class Course {
     deleteBtn.innerText = "delete";
     commentButton.innerText = "See Comments";
 
-    coursesDiv.appendChild(h4);
-    coursesDiv.appendChild(cityP);
-    coursesDiv.appendChild(stateP);
-    coursesDiv.appendChild(commentUl);
-    coursesDiv.appendChild(deleteBtn);
-    coursesDiv.appendChild(commentButton);
+    coursesDiv.appendChild(courseDiv);
 
-    deleteBtn.addEventListener("click", (e) => this.delete(e));
+    courseDiv.appendChild(h4);
+    courseDiv.appendChild(cityP);
+    courseDiv.appendChild(stateP);
+    courseDiv.appendChild(commentUl);
+    courseDiv.appendChild(deleteBtn);
+    courseDiv.appendChild(commentButton);
+
+    // deleteBtn.addEventListener("click", (e) => this.delete(e));
     commentButton.addEventListener("click", (e) => this.getComment(e));
+    deleteBtn.addEventListener("click", (e) => {
+      fetch(`http://localhost:3000/courses/${this.id}`, {
+        method: "Delete",
+      }).then(courseDiv.remove());
+    });
   }
 
   getComment() {
@@ -85,19 +94,5 @@ class Course {
     // app.renderCourses();
     // debugger;
     this.display();
-  }
-
-  delete(e) {
-    // debugger;
-    fetch(`http://localhost:3000/courses/${this.id}`, {
-      method: "DELETE",
-    }).then(() => {
-      // debugger;
-      delete app.courses[this.id];
-      // app.renderCourses();
-      this.display();
-      // this.courses;
-      // delete courses[course.id]
-    });
   }
 }
