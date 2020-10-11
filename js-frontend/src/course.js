@@ -54,7 +54,8 @@ class Course {
 
     commentButton.addEventListener("click", (e) => this.getComment(e));
 
-    commentForm.addEventListener("submit", (e) => this.addComment(e));
+    // commentForm.addEventListener("submit", (e) => this.addComment(e));
+    commentForm.addEventListener("submit", this.addComment);
 
     deleteBtn.addEventListener("click", (e) => {
       fetch(`http://localhost:3000/courses/${this.id}`, {
@@ -63,10 +64,12 @@ class Course {
     });
   }
 
-  addComment(e) {
+  addComment = (e) => {
     e.preventDefault();
+    debugger;
     //e.target.value
-    const id = document.getElementById("commentForm");
+    const form = document.getElementById("commentForm");
+    debugger;
     // debugger;
     const comment = new Comment({
       content: e.target.commentInput.value,
@@ -74,22 +77,30 @@ class Course {
     });
     app.comments.push(comment);
     this.createComment(comment);
-  }
+  };
 
   createComment(comment) {
-    // debugger;
-    fetch("http://localhost:3000/comments", {
+    debugger;
+    fetch(`http://localhost:3000/courses/${this.id}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        content: comment.content,
-        course_id: this.id,
-      }),
-    });
+      body: JSON.stringify({ comment }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        document.querySelector("input[id=commentInput]").value = "";
+        debugger;
+      });
+    // this.commentSave();
+    app.comments.push(comment);
+    // return comment;
+  }
 
-    document.querySelector("input[id=commentInput]").value = "";
+  commentSave() {
+    // debugger;
+    this.getComment();
   }
 
   getComment() {
@@ -107,6 +118,7 @@ class Course {
         if (length < 1) {
           alert("There are no comments for this course");
         } else {
+          debugger;
           this.renderComment();
         }
       })
@@ -114,6 +126,7 @@ class Course {
   }
 
   renderComment() {
+    debugger;
     this.comments.forEach((comment) => {
       const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
