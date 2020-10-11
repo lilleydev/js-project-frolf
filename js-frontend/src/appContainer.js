@@ -33,7 +33,7 @@ class AppContainer {
   }
 
   getCourses() {
-    fetch(this.BACKEND_URL + "/courses")
+    fetch("http://localhost:3000/courses")
       .then((resp) => resp.json())
       .then((data) => {
         data.forEach((course) => {
@@ -56,23 +56,6 @@ class AppContainer {
     });
   }
 
-  // addComment(e) {
-  //   e.preventDefault();
-
-  //   debugger;
-  //   //e.target.value
-  //   const comment = document.getElementById("commentInput");
-  //   // debugger;
-  //   // const com = new Course({
-  //   //   name: courseName.value,
-  //   //   city: courseCity.value,
-  //   //   state: courseState.value,
-  //   //   // comments: courseComment.value,
-  //   // });
-  //   // // debugger;
-  //   // this.createCourse(course);
-  // }
-
   addNewCourse = (e) => {
     // debugger;
     e.preventDefault();
@@ -89,7 +72,6 @@ class AppContainer {
 
   createCourse(course) {
     // move to course class;
-    // debugger;
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
