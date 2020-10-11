@@ -1,13 +1,17 @@
 class CommentsController < ApplicationController
   def index
-    # binding.pry
-    @comments = Comment.all
-    render json: @comments
+    comments = Comment.all
+
+    render json: comments
   end
 
   def create
-    # binding.pry
     comment = Comment.create(comment_params)
+    render json: comment
+  end
+
+  def show
+    comment = Comment.find_by(id: params(:id))
     render json: comment
   end
 
