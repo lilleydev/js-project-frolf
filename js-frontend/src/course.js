@@ -77,6 +77,42 @@ class Course {
     });
   }
 
+  addComment(e) {
+    e.preventDefault();
+    //e.target.value
+    const id = document.getElementById("commentForm");
+    // debugger;
+    const comment = new Comment({
+      content: e.target.commentInput.value,
+      course_id: this.id,
+    });
+    app.comments.push(comment);
+    this.createComment(comment);
+  }
+
+  createComment(comment) {
+    // debugger;
+    fetch("http://localhost:3000/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: comment.content,
+        course_id: this.id,
+      }),
+    });
+    // .then((resp) => resp.json())
+    // .then((data) => {
+    //   if (data.errors) {
+    //     console.log(info.errors);
+    //   } else {
+    //     app.comments.push(comment);
+    document.querySelector("input[id=commentInput]").value = "";
+    //   }
+    // });
+  }
+
   getComment() {
     // debugger;
     fetch(`http://localhost:3000/courses/${this.id}/comments`)
@@ -108,35 +144,53 @@ class Course {
       .catch((error) => console.error(error));
   }
 
-  addComment = (e) => {
-    e.preventDefault();
-    //e.target.value
-    const id = document.getElementById("commentForm");
-    // debugger;
-    const comment = new Comment({
-      content: e.target.commentInput.value,
-      course_id: this.id,
-    });
-    this.createComment(comment);
-  };
+  // createComment(comment) {
+  //   fetch("http://localhost:3000/comments", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       comment: {
+  //         content: comment.content,
+  //         course_id: comment.course_id,
+  //       },
+  //     }),
+  //   })
+  //     .then((r) => r.json())
+  //     .then((info) => {
+  //       if (info.errors) {
+  //         console.log(info.errors);
+  //       } else {
+  //         debugger;
+  //         // newPost.reset();
+  //         // const u = info.included[0];
+  //         // renderPost(info.data, u);
+  //         // info.data = [info.data];
+  //         // app.addBlogPosts(info);
+  //       }
+  //     });
+  // }
+  // document.getElementById("commentInput").reset();
+  // document.querySelector("input[id=twitter_handle_input]").value = "";
+  // form.innerText = "";
 
-  createComment(comment) {
-    fetch("http://localhost:3000/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        comment: {
-          content: comment.content,
-          course_id: comment.course_id,
-        },
-      }),
-    });
-    app.comments.push(comment);
-    // document.getElementById("commentForm").clearFields();
-    // debugger;
-  }
+  // .then((resp) => resp.json())
+  // .then((data) => {
+  //   if (data.errors) {
+  //     console.log(info.errors);
+  //   } else {
+  //     // course.id = data.id;
+
+  //     // debugger;
+  //     // comment.save();
+  //     // this.renderNewCourse(data);
+  //     app.comments.push(comment);
+  //   }
+  // });
+  //   document.getElementById("commentForm").reset();
+  //   // debugger;
+  // }
 
   renderComment() {
     // debugger;
