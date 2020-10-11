@@ -68,9 +68,7 @@ class Course {
     // createCommentButton.addEventListener("click", (e) => this.addComment(e));
 
     // console.log(createCommentButton);
-    commentForm.addEventListener("submit", (e) => {
-      this.addComment(e);
-    });
+    commentForm.addEventListener("submit", (e) => this.addComment(e));
 
     deleteBtn.addEventListener("click", (e) => {
       fetch(`http://localhost:3000/courses/${this.id}`, {
@@ -110,20 +108,34 @@ class Course {
       .catch((error) => console.error(error));
   }
 
-  addComment(e) {
+  addComment = (e) => {
     e.preventDefault();
-    debugger;
     //e.target.value
-    const comment = document.getElementById("commentInput");
+    const id = document.getElementById("commentForm");
     // debugger;
-    // const com = new Course({
-    //   name: courseName.value,
-    //   city: courseCity.value,
-    //   state: courseState.value,
-    //   // comments: courseComment.value,
-    // });
-    // // debugger;
-    // this.createCourse(course);
+    const comment = new Comment({
+      content: e.target.commentInput.value,
+      course_id: this.id,
+    });
+    this.createComment(comment);
+  };
+
+  createComment(comment) {
+    fetch("http://localhost:3000/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        comment: {
+          content: comment.content,
+          course_id: comment.course_id,
+        },
+      }),
+    });
+    app.comments.push(comment);
+    // document.getElementById("commentForm").clearFields();
+    // debugger;
   }
 
   renderComment() {
