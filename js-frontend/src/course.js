@@ -54,7 +54,6 @@ class Course {
 
     commentButton.addEventListener("click", (e) => this.getComment(e));
 
-    // commentForm.addEventListener("submit", (e) => this.addComment(e));
     commentForm.addEventListener("submit", this.addComment);
 
     deleteBtn.addEventListener("click", (e) => {
@@ -66,21 +65,18 @@ class Course {
 
   addComment = (e) => {
     e.preventDefault();
-    debugger;
-    //e.target.value
+    
     const form = document.getElementById("commentForm");
-    debugger;
-    // debugger;
-    const comment = new Comment({
+   
+    // const comment = new Comment({
+    //   content: e.target.commentInput.value,
+    //   course_id: this.id,
+    // })
+    const comment = {
       content: e.target.commentInput.value,
-      course_id: this.id,
-    });
-    app.comments.push(comment);
-    this.createComment(comment);
-  };
+      course_id: this.id
+    }
 
-  createComment(comment) {
-    debugger;
     fetch(`http://localhost:3000/courses/${this.id}/comments`, {
       method: "POST",
       headers: {
@@ -90,44 +86,50 @@ class Course {
     })
       .then((r) => r.json())
       .then((data) => {
-        document.querySelector("input[id=commentInput]").value = "";
-        debugger;
+        console.log(data)
+        if (data.errors) {
+          console.log(info.errors);
+        } else {
+          document.querySelector("input[id=commentInput]").value = "";
+          // this.display()
+          this.getComment();
+        }
       });
-    // this.commentSave();
-    app.comments.push(comment);
-    // return comment;
   }
 
-  commentSave() {
-    // debugger;
-    this.getComment();
-  }
+
+//   getComment() {
+//     debugger;
+//     fetch("http://localhost:3000/comments")
+//       .then((resp) => resp.json())
+//       .then((data) => {
+// debugger;        data.forEach((comm) => {
+//           const c = new Comment();
+
+//           app.comments.push(c);
+//         });
+//         debugger;
+//         const length = this.comments.length;
+//         if (length < 1) {
+//           alert("There are no comments for this course");
+//         } else {
+//           debugger;
+//           this.renderComment();
+//         }
+//       })
+//       .catch((error) => console.error(error));
+//   }
 
   getComment() {
-    // debugger;
     fetch(`http://localhost:3000/courses/${this.id}/comments`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        data.forEach((comm) => {
-          const c = new Comment(comm.content, comm.course_id);
-
-          app.comments.push(c);
-        });
-        const length = this.comments.length;
-        if (length < 1) {
-          alert("There are no comments for this course");
-        } else {
-          debugger;
-          this.renderComment();
-        }
-      })
-      .catch((error) => console.error(error));
+    .then((resp) => resp.json())
+    .then(info => this.renderComment(info))
   }
 
-  renderComment() {
-    debugger;
-    this.comments.forEach((comment) => {
+  renderComment(info) {
+    // debugger;
+    //array of objects is returned
+    info.forEach((comment) => {
       const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
       commentLi.innerText = comment.content;
