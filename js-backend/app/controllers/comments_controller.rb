@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
+    comment = Comment.create(comment_params)
   end
 
   private
