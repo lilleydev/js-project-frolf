@@ -1,3 +1,3 @@
 class Course < ApplicationRecord
-  has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :delete_all
 end

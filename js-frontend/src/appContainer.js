@@ -13,10 +13,8 @@ class AppContainer {
     const courseForm = document.getElementById("newCourseForm");
     courseForm.addEventListener("submit", this.addNewCourse);
 
-    // debugger;
   }
-  // const deleteBtn = document.getElementById("deleteButton");
-  // deleteBtn.addEventListener("click", this.delete);
+  
   toggleRecommend() {
     const x = document.getElementById("recommendDiv");
     const randCourse =
@@ -24,7 +22,6 @@ class AppContainer {
     const name = randCourse.name;
     const city = randCourse.city;
     if (x.style.display === "none") {
-      // add state to display
       x.innerHTML = `Try out ${name} at ${city}!`;
       x.style.display = "block";
     } else {
@@ -38,19 +35,15 @@ class AppContainer {
       .then((data) => {
         data.forEach((course) => {
           const c = new Course(course);
-          // debugger;
           this.courses.push(c);
         });
         this.renderCourses();
-        // console.log(createCommentButton);
       })
-      // fetch courses
-      // render
+      
       .catch((error) => console.error(error));
   }
 
   renderCourses() {
-    // debugger;
     this.courses.forEach((course) => {
       course.display();
     });
@@ -101,6 +94,4 @@ class AppContainer {
   }
 }
 
-// const option = documnt.createElement("option")
-// create options to filter by state?
-// js switch statement
+

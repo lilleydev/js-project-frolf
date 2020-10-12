@@ -90,35 +90,14 @@ class Course {
         if (data.errors) {
           console.log(info.errors);
         } else {
-          document.querySelector("input[id=commentInput]").value = "";
-          // this.display()
+          // document.querySelector("input[id=commentInput]").value = "";
+          // this.display(
+          document.getElementById("commentForm").reset();
+
           this.getComment();
         }
       });
   }
-
-
-//   getComment() {
-//     debugger;
-//     fetch("http://localhost:3000/comments")
-//       .then((resp) => resp.json())
-//       .then((data) => {
-// debugger;        data.forEach((comm) => {
-//           const c = new Comment();
-
-//           app.comments.push(c);
-//         });
-//         debugger;
-//         const length = this.comments.length;
-//         if (length < 1) {
-//           alert("There are no comments for this course");
-//         } else {
-//           debugger;
-//           this.renderComment();
-//         }
-//       })
-//       .catch((error) => console.error(error));
-//   }
 
   getComment() {
     fetch(`http://localhost:3000/courses/${this.id}/comments`)
@@ -127,7 +106,7 @@ class Course {
   }
 
   renderComment(info) {
-    // debugger;
+    debugger;
     //array of objects is returned
     info.forEach((comment) => {
       const commentUl = document.getElementById(`${this.id}commentUl`);
