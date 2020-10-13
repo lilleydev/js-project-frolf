@@ -1,9 +1,17 @@
 class CommentsController < ApplicationController
   def index
-    comments = Comment.all
+    # binding.pry
+    if params['course_id']
+      @course = Course.find(params['course_id'])
+      @comments = Comment.all.where(course_id: params['course_id'])
 
-    render json: comments
-  end
+      render json: @comments
+    else
+      @comments = Comment.all
+      render json: @comments
+
+      end
+    end
 
   def create
     comment = Comment.create(comment_params)
