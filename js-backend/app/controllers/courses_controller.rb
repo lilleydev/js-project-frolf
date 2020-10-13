@@ -9,6 +9,11 @@ class CoursesController < ApplicationController
     render json: course if course.save
   end
 
+  def show
+    course = Course.find_by(id: params[:id])
+    render json: course
+  end
+
   def destroy
     @course = Course.find_by(id: params[:id])
     @course.destroy
