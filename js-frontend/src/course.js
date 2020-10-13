@@ -29,7 +29,7 @@ class Course {
     createCommentButton.id = "createCommentButton";
     courseDiv.id = `${this.id}courseDiv`;
     commentForm.id = "commentForm";
-    commentInput.id = "commentInput";
+    commentInput.id = `${this.id}commentInput`;
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
@@ -66,14 +66,11 @@ class Course {
   addComment = (e) => {
     e.preventDefault();
     
-    const form = document.getElementById("commentForm");
+    const form = document.getElementById(`${this.id}commentInput`);
    
-    // const comment = new Comment({
-    //   content: e.target.commentInput.value,
-    //   course_id: this.id,
-    // })
+    
     const comment = {
-      content: e.target.commentInput.value,
+      content: e.target[`${this.id}commentInput`].value,
       course_id: this.id
     }
 
@@ -90,11 +87,8 @@ class Course {
         if (data.errors) {
           console.log(info.errors);
         } else {
-          // document.querySelector("input[id=commentInput]").value = "";
-          // this.display(
-          document.getElementById("commentForm").reset();
-
-          this.getComment();
+          document.getElementById(`${this.id}commentInput`).value = ""
+        
         }
       });
   }
@@ -106,8 +100,6 @@ class Course {
   }
 
   renderComment(info) {
-    debugger;
-    //array of objects is returned
     info.forEach((comment) => {
       const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
