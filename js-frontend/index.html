@@ -2,10 +2,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif
+      }
+    
+      .w3-row-padding img {
+        margin-bottom: 12px
+      }
+    
+      .bgimg {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('assets/dgbrengle.jpg');
+        min-height: 100%;
+      }
+    </style>
     <title>DISCGOLFR</title>
   </head>
   <body>
-    <h1>DISCGOLFR</h1>
+    <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+      <div class="bgimg"></div>
+    </nav>
+
+    <div class="w3-main w3-padding-large" style="margin-left:40%">
+
+  <header class="w3-container w3-center" style="padding:128px 16px" id="home">
+
+    <h1 class="w3-jumbo"><b>DISCGOLFR</b></h1>
+    </header>
     <div id="recommendDiv" style="display: none"></div>
     <button id="courseRecommend">Course Recommend</button>
     <h2>Courses to Check Out</h2>
@@ -31,7 +66,7 @@
         </div>
       </form>
     </div>
-
+</div>
     <script src="src/appContainer.js"></script>
     <script src="src/course.js"></script>
     <script src="src/comment.js"></script>
