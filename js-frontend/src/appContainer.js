@@ -33,10 +33,12 @@ class AppContainer {
     fetch("http://localhost:3000/courses")
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data)
         data.forEach((course) => {
           const c = new Course(course);
           this.courses.push(c);
         });
+        // debugger;
         this.renderCourses();
       })
       
@@ -57,6 +59,7 @@ class AppContainer {
       name: courseName.value,
       city: courseCity.value,
       state: courseState.value,
+      avatar: courseImage.value,
       // comments: courseComment.value,
     });
     // debugger;
@@ -75,6 +78,7 @@ class AppContainer {
           name: course.name,
           city: course.city,
           state: course.state,
+          avatar: course.courseImage,
         },
       }),
     })
