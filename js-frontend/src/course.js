@@ -37,9 +37,8 @@ class Course {
     commentDiv.style="display: none";
 
     h4.innerText = this.name;
-    cityP.innerText = this.city;
-    stateP.innerText = this.state;
-    courseRating.innerText = (this.rating / 100);
+    cityP.innerText = `Location: ${this.city}, ${this.state}`;
+    courseRating.innerText = `Difficulty rating: ${this.rating} / 100`;
 
     deleteBtn.innerText = "delete";
     commentButton.innerText = "See Comments";
