@@ -17,6 +17,7 @@ class AppContainer {
   
   toggleRecommend() {
     const x = document.getElementById("recommendDiv");
+    const btn = document.getElementById("courseRecommend")
     const randCourse =
       app.courses[Math.floor(Math.random() * app.courses.length)];
     const name = randCourse.name;
@@ -24,8 +25,10 @@ class AppContainer {
     if (x.style.display === "none") {
       x.innerHTML = `Try out ${name} at ${city}!`;
       x.style.display = "block";
+      btn.innerText = "nicccceee!"
     } else {
       x.style.display = "none";
+      btn.innerText = "Recommend something!"
     }
   }
 
@@ -52,22 +55,62 @@ class AppContainer {
   }
 
   addNewCourse = (e) => {
-    // debugger;
+    debugger;
     e.preventDefault();
     const form = document.getElementById("newCourseForm");
     const course = new Course({
       name: courseName.value,
       city: courseCity.value,
       state: courseState.value,
-      avatar: courseImage.value,
+      // avatar: courseImage.value,
       // comments: courseComment.value,
     });
     // debugger;
     this.createCourse(course);
   };
+// addNewCourse = (e) => {
+//     debugger;
+//     e.preventDefault();
+//     const form = document.getElementById("newCourseForm");
+//     const course = new Course({
+//       name: courseName.value,
+//       city: courseCity.value,
+//       state: courseState.value,
+//       avatar: courseImage.value,
+//       // comments: courseComment.value,
+//     });
+//     // debugger;
+//     this.createCourse(course);
+// }
 
+//   createCourse(course) {
+//     // debugger;
+//     fetch("http://localhost:3000/courses", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         // "Authorization": localStorage.getItem("token"),
+//         // "Accept": "application/json"
+//       },
+//       body: course
+//     })
+//       .then((resp) => resp.json())
+//       .then((data) => {
+//         if (data.errors) {
+//           console.log(info.errors);
+//         } else {
+//           course.id = data.id;
+
+//           // debugger;
+//           course.save();
+//           // this.renderNewCourse(data);
+//           document.getElementById("newCourseForm").reset();
+//         }
+//       });
+//   };
+  
   createCourse(course) {
-    // move to course class;
+    // debugger;
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
@@ -78,7 +121,7 @@ class AppContainer {
           name: course.name,
           city: course.city,
           state: course.state,
-          avatar: course.courseImage,
+          // avatar: course.avatar,
         },
       }),
     })
