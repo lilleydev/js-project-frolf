@@ -31,7 +31,7 @@ class Course {
     courseDiv.id = `${this.id}courseDiv`;
     commentForm.id = "commentForm";
     commentInput.id = `${this.id}commentInput`;
-    commentDiv.id = "commentDiv";
+    commentDiv.id = `${this.id}commentDiv`;
     commentDiv.style="display: none";
 
     h4.innerText = this.name;
@@ -105,7 +105,7 @@ class Course {
   }
 
   renderComment(info) {
-    const commentDiv = document.getElementById("commentDiv");
+    const commentDiv = document.getElementById(`${this.id}commentDiv`);
     // debugger;
     const commentUl = document.getElementById(`${this.id}commentUl`);
     if (commentDiv.style.display === "none") {

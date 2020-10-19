@@ -55,7 +55,7 @@ class AppContainer {
   }
 
   addNewCourse = (e) => {
-    debugger;
+    // debugger;
     e.preventDefault();
     const form = document.getElementById("newCourseForm");
     const course = new Course({
