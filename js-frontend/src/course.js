@@ -107,28 +107,30 @@ class Course {
   renderComment(info) {
     const commentDiv = document.getElementById("commentDiv");
     // debugger;
-    
+    const commentUl = document.getElementById(`${this.id}commentUl`);
     if (commentDiv.style.display === "none") {
-    commentDiv.style.display = "block";
-    debugger;
+      commentDiv.appendChild(commentUl)
+      // debugger;
+      commentDiv.style.display = "block";
     
     info.forEach((comment) => {
-      const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
+      commentLi.id = "commentList"
       commentLi.innerText = comment.content;
       commentUl.appendChild(commentLi);
     });
 
-
   } else {
     commentDiv.style.display = "none";
+
+    commentUl.innerText = "";
+    
   }
 
   }
 
   save() {
     app.courses.push(this);
-    
     this.display();
   }
 }
