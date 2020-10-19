@@ -5,18 +5,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-    # binding.pry
     course = Course.new(course_params)
     render json: course if course.save
   end
 
-  def show
-    course = Course.find_by(id: params[:id])
-    render json: course
-  end
-
   def destroy
-    # binding.pry
     @course = Course.find_by(id: params[:id])
     @course.destroy
   end
