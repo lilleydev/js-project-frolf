@@ -18,6 +18,7 @@ class Course {
     const h4 = document.createElement("h4");
     const cityP = document.createElement("P");
     const stateP = document.createElement("P");
+    const courseRating = document.createElement("P");
     const deleteBtn = document.createElement("button");
 
     const commentButton = document.createElement("button");
@@ -38,7 +39,8 @@ class Course {
     h4.innerText = this.name;
     cityP.innerText = this.city;
     stateP.innerText = this.state;
-    commentInput.innertText = this.content;
+    courseRating.innerText = (this.rating / 100);
+
     deleteBtn.innerText = "delete";
     commentButton.innerText = "See Comments";
     createCommentButton.innerText = "Add Comment";
@@ -48,6 +50,7 @@ class Course {
     courseDiv.appendChild(h4);
     courseDiv.appendChild(cityP);
     courseDiv.appendChild(stateP);
+    courseDiv.appendChild(courseRating);
     courseDiv.appendChild(deleteBtn);
     courseDiv.appendChild(commentButton);
     courseDiv.appendChild(commentForm);
