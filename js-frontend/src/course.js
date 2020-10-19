@@ -1,11 +1,12 @@
 class Course {
-  constructor({ name, city, state, id, comments, avatar }) {
+  constructor({ name, city, state, id, comments, avatar, rating }) {
     (this.name = name),
       (this.city = city),
       (this.state = state),
       (this.comments = comments);
     this.id = id;
     this.avatar = avatar
+    this.rating = rating
   }
 
   display() {

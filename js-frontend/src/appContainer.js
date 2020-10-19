@@ -62,6 +62,7 @@ class AppContainer {
       name: courseName.value,
       city: courseCity.value,
       state: courseState.value,
+      rating: courseRating.value,
       // avatar: courseImage.value,
       // comments: courseComment.value,
     });
@@ -121,6 +122,7 @@ class AppContainer {
           name: course.name,
           city: course.city,
           state: course.state,
+          rating: course.rating,
           // avatar: course.avatar,
         },
       }),
