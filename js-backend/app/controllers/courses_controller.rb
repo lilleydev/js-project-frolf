@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   end
 
   def create
+    # binding.pry
     course = Course.new(course_params)
     render json: course if course.save
   end
@@ -15,6 +16,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    # binding.pry
     @course = Course.find_by(id: params[:id])
     @course.destroy
   end
@@ -22,6 +24,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name, :city, :state, :courseImage)
+    params.require(:course).permit(:name, :city, :state, :avatar)
   end
 end
