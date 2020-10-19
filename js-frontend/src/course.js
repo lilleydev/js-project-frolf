@@ -1,16 +1,17 @@
 class Course {
-  constructor({ name, city, state, id, comments }) {
+  constructor({ name, city, state, id, comments, avatar }) {
     (this.name = name),
       (this.city = city),
       (this.state = state),
       (this.comments = comments);
     this.id = id;
+    this.avatar = avatar
   }
 
   display() {
     const coursesDiv = document.getElementById("coursesDiv");
     const courseDiv = document.createElement("DIV");
-
+    const commentDiv = document.createElement("DIV")
     const commentForm = document.createElement("FORM");
 
     const h4 = document.createElement("h4");
@@ -30,6 +31,8 @@ class Course {
     courseDiv.id = `${this.id}courseDiv`;
     commentForm.id = "commentForm";
     commentInput.id = `${this.id}commentInput`;
+    commentDiv.id = "commentDiv";
+    commentDiv.style="display: none";
 
     h4.innerText = this.name;
     cityP.innerText = this.city;
@@ -44,10 +47,12 @@ class Course {
     courseDiv.appendChild(h4);
     courseDiv.appendChild(cityP);
     courseDiv.appendChild(stateP);
-    courseDiv.appendChild(commentUl);
     courseDiv.appendChild(deleteBtn);
     courseDiv.appendChild(commentButton);
     courseDiv.appendChild(commentForm);
+    
+    courseDiv.appendChild(commentDiv)
+    commentDiv.appendChild(commentUl);
 
     commentForm.appendChild(commentInput);
     commentForm.appendChild(createCommentButton);
@@ -100,16 +105,30 @@ class Course {
   }
 
   renderComment(info) {
+    const commentDiv = document.getElementById("commentDiv");
+    // debugger;
+    
+    if (commentDiv.style.display === "none") {
+    commentDiv.style.display = "block";
+    debugger;
+    
     info.forEach((comment) => {
       const commentUl = document.getElementById(`${this.id}commentUl`);
       const commentLi = document.createElement("LI");
       commentLi.innerText = comment.content;
       commentUl.appendChild(commentLi);
     });
+
+
+  } else {
+    commentDiv.style.display = "none";
+  }
+
   }
 
   save() {
     app.courses.push(this);
+    
     this.display();
   }
 }
