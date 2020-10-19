@@ -13,6 +13,7 @@ class AppContainer {
     const courseForm = document.getElementById("newCourseForm");
     courseForm.addEventListener("submit", this.addNewCourse);
 
+    
   }
   
   toggleRecommend() {
@@ -141,6 +142,9 @@ class AppContainer {
         }
       });
   }
+  
+  
+
 }
 
 
