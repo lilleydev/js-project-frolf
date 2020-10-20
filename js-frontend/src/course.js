@@ -44,6 +44,9 @@ class Course {
     commentButton.innerText = "See Comments";
     createCommentButton.innerText = "Add Comment";
 
+    const counter = document.getElementById("courseCount")
+    counter.innerText = `Currently: ${app.courses.length}`
+
     coursesDiv.appendChild(courseDiv);
 
     courseDiv.appendChild(h4);
@@ -136,4 +139,6 @@ class Course {
     app.courses.push(this);
     this.display();
   }
+
+ 
 }
