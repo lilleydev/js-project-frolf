@@ -13,7 +13,8 @@ class AppContainer {
     const courseForm = document.getElementById("newCourseForm");
     courseForm.addEventListener("submit", this.addNewCourse);
 
-    
+    const ratingDropdown = document.getElementById("ratingBtn")
+    ratingDropdown.addEventListener("click", this.ratingsMenu)
   }
   
   toggleRecommend() {
@@ -143,7 +144,9 @@ class AppContainer {
       });
   }
   
-  
+  ratingsMenu() {
+    document.getElementById("ratingDropdown").classList.toggle("show")
+  }
   
 
 }
