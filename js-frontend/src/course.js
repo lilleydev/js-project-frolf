@@ -5,14 +5,13 @@ class Course {
       (this.state = state),
       (this.comments = comments);
     this.id = id;
-    this.avatar = avatar
-    this.rating = rating
+    this.avatar = avatar;
+    this.rating = rating;
   }
 
   display() {
-    const coursesDiv = document.getElementById("coursesDiv");
     const courseDiv = document.createElement("DIV");
-    const commentDiv = document.createElement("DIV")
+    const commentDiv = document.createElement("DIV");
     const commentForm = document.createElement("FORM");
 
     const h4 = document.createElement("h4");
@@ -34,7 +33,7 @@ class Course {
     commentForm.id = "commentForm";
     commentInput.id = `${this.id}commentInput`;
     commentDiv.id = `${this.id}commentDiv`;
-    commentDiv.style="display: none";
+    commentDiv.style = "display: none";
 
     h4.innerText = this.name;
     cityP.innerText = `Location: ${this.city}, ${this.state}`;
@@ -43,9 +42,6 @@ class Course {
     deleteBtn.innerText = "delete";
     commentButton.innerText = "See Comments";
     createCommentButton.innerText = "Add Comment";
-
-    const counter = document.getElementById("courseCount")
-    counter.innerText = `Currently: ${app.courses.length}`
 
     coursesDiv.appendChild(courseDiv);
 
@@ -56,8 +52,8 @@ class Course {
     courseDiv.appendChild(deleteBtn);
     courseDiv.appendChild(commentButton);
     courseDiv.appendChild(commentForm);
-    
-    courseDiv.appendChild(commentDiv)
+
+    courseDiv.appendChild(commentDiv);
     commentDiv.appendChild(commentUl);
 
     commentForm.appendChild(commentInput);
@@ -67,23 +63,26 @@ class Course {
 
     commentForm.addEventListener("submit", this.addComment);
 
-    deleteBtn.addEventListener("click", (e) => {
-      fetch(`http://localhost:3000/courses/${this.id}`, {
-        method: "Delete",
-      }).then(courseDiv.remove());
-    });
+    deleteBtn.addEventListener("click", this.delete);
   }
+
+  delete = () => {
+    fetch(`http://localhost:3000/courses/${this.id}`, {
+      method: "Delete",
+    }).then(() => {
+      app.removeCourse(this);
+    });
+  };
 
   addComment = (e) => {
     e.preventDefault();
-    
+
     const form = document.getElementById(`${this.id}commentInput`);
-   
-    
+
     const comment = {
       content: e.target[`${this.id}commentInput`].value,
-      course_id: this.id
-    }
+      course_id: this.id,
+    };
 
     fetch(`http://localhost:3000/courses/${this.id}/comments`, {
       method: "POST",
@@ -94,20 +93,19 @@ class Course {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         if (data.errors) {
           console.log(info.errors);
         } else {
-          document.getElementById(`${this.id}commentInput`).value = ""
-        
+          document.getElementById(`${this.id}commentInput`).value = "";
         }
       });
-  }
+  };
 
   getComment() {
     fetch(`http://localhost:3000/courses/${this.id}/comments`)
-    .then((resp) => resp.json())
-    .then(info => this.renderComment(info))
+      .then((resp) => resp.json())
+      .then((info) => this.renderComment(info));
   }
 
   renderComment(info) {
@@ -115,30 +113,20 @@ class Course {
     // debugger;
     const commentUl = document.getElementById(`${this.id}commentUl`);
     if (commentDiv.style.display === "none") {
-      commentDiv.appendChild(commentUl)
+      commentDiv.appendChild(commentUl);
       // debugger;
       commentDiv.style.display = "block";
-    
-    info.forEach((comment) => {
-      const commentLi = document.createElement("LI");
-      commentLi.id = "commentList"
-      commentLi.innerText = comment.content;
-      commentUl.appendChild(commentLi);
-    });
 
-  } else {
-    commentDiv.style.display = "none";
+      info.forEach((comment) => {
+        const commentLi = document.createElement("LI");
+        commentLi.id = "commentList";
+        commentLi.innerText = comment.content;
+        commentUl.appendChild(commentLi);
+      });
+    } else {
+      commentDiv.style.display = "none";
 
-    commentUl.innerText = "";
-    
+      commentUl.innerText = "";
+    }
   }
-
-  }
-
-  save() {
-    app.courses.push(this);
-    this.display();
-  }
-
- 
 }
