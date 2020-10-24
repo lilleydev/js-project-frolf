@@ -1,12 +1,13 @@
 class Course {
-  constructor({ name, city, state, id, comments, avatar, rating }) {
-    (this.name = name),
-      (this.city = city),
-      (this.state = state),
-      (this.comments = comments);
-    this.id = id;
-    this.avatar = avatar;
-    this.rating = rating;
+  constructor({ course }) {
+    // debugger;
+    (this.name = course.name),
+      (this.city = course.city),
+      (this.state = course.state),
+      (this.comments = course.comments),
+      (this.id = course.id),
+      (this.avatar = course.avatar),
+      (this.rating = course.rating);
   }
 
   display() {

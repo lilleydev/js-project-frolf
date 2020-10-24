@@ -13,10 +13,10 @@ class AppContainer {
     btn.addEventListener("click", this.toggleRecommend);
 
     const courseForm = document.getElementById("newCourseForm");
-    courseForm.addEventListener("submit", this.addNewCourse);
+    courseForm.addEventListener("submit", this.createCourse);
 
-    const ratingDropdown = document.getElementById("ratingBtn");
-    ratingDropdown.addEventListener("change", this.ratingsMenu);
+    // const ratingDropdown = document.getElementById("ratingBtn");
+    // ratingDropdown.addEventListener("change", this.ratingsMenu);
   }
 
   courseCounter() {
@@ -48,7 +48,9 @@ class AppContainer {
       .then((data) => {
         console.log(data);
         data.forEach((course) => {
-          const c = new Course(course);
+          console.log("course", course);
+
+          const c = new Course({ course });
           this.courses.push(c);
         });
         // debugger;
@@ -78,22 +80,10 @@ class AppContainer {
     });
   }
 
-  addNewCourse = (e) => {
+  createCourse = (e) => {
     e.preventDefault();
     const form = document.getElementById("newCourseForm");
-    const course = new Course({
-      name: courseName.value,
-      city: courseCity.value,
-      state: courseState.value,
-      rating: courseRating.value,
-      // avatar: courseImage.value,
-      // comments: courseComment.value,
-    });
-    // debugger;
-    this.createCourse(course);
-  };
 
-  createCourse(course) {
     // debugger;
     fetch("http://localhost:3000/courses", {
       method: "POST",
@@ -102,29 +92,31 @@ class AppContainer {
       },
       body: JSON.stringify({
         course: {
-          name: course.name,
-          city: course.city,
-          state: course.state,
-          rating: course.rating,
+          name: e.target.courseName.value,
+          city: e.target.courseCity.value,
+          state: e.target.courseState.value,
+          rating: e.target.courseRating.value,
           // avatar: course.avatar,
         },
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => {
-        if (data.errors) {
+      .then((course) => {
+        if (course.errors) {
           console.log(info.errors);
         } else {
-          course.id = data.id;
+          const newCourse = new Course({ course });
+          // course.id = data.id;
 
           // debugger;
-          this.courses.push(course);
-          this.renderCourses();
+          this.courses.push(newCourse);
+          newCourse.display();
+          // this.renderCourses();
           // this.renderNewCourse(data);
           document.getElementById("newCourseForm").reset();
         }
       });
-  }
+  };
 
   ratingsMenu() {
     document.getElementById("ratingDropdown").classList.toggle("show");
